@@ -1,0 +1,7 @@
+export const GET_ACCEPTED_LEAD_LOADING = "GET_ACCEPTED_LEAD_LOADING";
+export const GET_ACCEPTED_LEAD_FAIL = "GET_ACCEPTED_LEAD_FAIL";
+export const GET_ACCEPTED_LEAD_SUCCESS = "GET_ACCEPTED_LEAD_SUCCESS";
+
+export const getAcceptedLeadAction = () => {
+  return { type: GET_ACCEPTED_LEAD_LOADING };
+};
