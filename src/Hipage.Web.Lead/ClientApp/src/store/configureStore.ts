@@ -1,29 +1,33 @@
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
-import thunk from 'redux-thunk';
-import { connectRouter, routerMiddleware } from 'connected-react-router';
-import { History } from 'history';
-import { ApplicationState, reducers } from './';
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import createSageMiddleware from "redux-saga";
+import { connectRouter, routerMiddleware } from "connected-react-router";
+import { composeWithDevTools } from "redux-devtools-extension/logOnlyInProduction";
+import { createLogger } from "redux-logger";
+import { History } from "history";
+import { rootSaga } from "./sagas";
 
-export default function configureStore(history: History, initialState?: ApplicationState) {
-    const middleware = [
-        thunk,
-        routerMiddleware(history)
-    ];
+export default function configureStore(history: History) {
+  const dev = process.env.NODE_ENV === "development";
 
-    const rootReducer = combineReducers({
-        ...reducers,
-        router: connectRouter(history)
-    });
+  const sagaMiddleware = createSageMiddleware();
 
-    const enhancers = [];
-    const windowIfDefined = typeof window === 'undefined' ? null : window as any;
-    if (windowIfDefined && windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__) {
-        enhancers.push(windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__());
-    }
+  const logger = createLogger();
 
-    return createStore(
-        rootReducer,
-        initialState,
-        compose(applyMiddleware(...middleware), ...enhancers)
-    );
+  let middleware = dev
+    ? [logger, sagaMiddleware, routerMiddleware(history)]
+    : [sagaMiddleware, routerMiddleware(history)];
+
+  const rootReducer = combineReducers({
+    router: connectRouter(history),
+  });
+
+  const composeEnhancers = composeWithDevTools({});
+  const store = createStore(
+    rootReducer,
+    composeEnhancers(applyMiddleware(...middleware))
+  );
+
+  sagaMiddleware.run(rootSaga);
+
+  return store;
 }
