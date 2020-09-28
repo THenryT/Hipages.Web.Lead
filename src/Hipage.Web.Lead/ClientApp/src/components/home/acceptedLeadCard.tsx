@@ -1,11 +1,13 @@
 import React from "react";
-import { Card, Avatar, Button } from "antd";
+import { Card, Avatar } from "antd";
 import {
   HomeOutlined,
-  MediumWorkmarkOutlined,
+  HddOutlined,
   PhoneOutlined,
   MailOutlined,
 } from "@ant-design/icons";
+import { LeadCartContentWithUnderline } from "./leadCardContentWithUnderLine";
+import { LeadCardItem } from "./LeadCardItem";
 import { AcceptedLeadModel } from "../../models/acceptedLead";
 
 interface Props {
@@ -16,33 +18,31 @@ export default (props: Props) => {
   const { lead } = props;
   return (
     <Card>
-      <div>
-        <Avatar>{lead.fullname[0]}</Avatar>
-        <div>{lead.fullname}</div>
-        <div>{lead.createdDate}</div>
-      </div>
-      <div>
-        <span>
+      <Card.Meta
+        avatar={<Avatar>{lead.fullname[0]}</Avatar>}
+        title={lead.fullname}
+        description={lead.createdDate}
+      />
+      <LeadCartContentWithUnderline>
+        <LeadCardItem>
           <HomeOutlined /> {lead.suburb}{" "}
-        </span>
-        <span>
-          <MediumWorkmarkOutlined /> {lead.category}
-        </span>
-        <span>Job Id: {lead.id}</span>
-        <span>{lead.price} Lead Invitation</span>
-      </div>
-      <div>
-        <div>
-          <span>
-            <PhoneOutlined />
-            {lead.phoneNum}
-          </span>
-          <span>
-            <MailOutlined /> {lead.email}
-          </span>
-        </div>
+        </LeadCardItem>
+        <LeadCardItem>
+          <HddOutlined /> {lead.category}
+        </LeadCardItem>
+        <LeadCardItem>Job Id:{lead.id}</LeadCardItem>
+        <LeadCardItem>{lead.price} Lead Invitation</LeadCardItem>
+      </LeadCartContentWithUnderline>
+      <LeadCartContentWithUnderline>
+        <LeadCardItem>
+          <PhoneOutlined />
+          {lead.phoneNum}
+        </LeadCardItem>
+        <LeadCardItem>
+          <MailOutlined /> {lead.email}
+        </LeadCardItem>
         <div>{lead.description}</div>
-      </div>
+      </LeadCartContentWithUnderline>
     </Card>
   );
 };

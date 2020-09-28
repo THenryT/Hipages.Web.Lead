@@ -1,33 +1,52 @@
 import { AcceptedLeadModel } from "../../models/acceptedLead";
 import { InvitedLeadModel } from "../../models/invitedLead";
 import { BaseAction } from "../../models/baseAction";
-import * as LeadActions from "../actions/leadActions";
+import { ActionType } from "../actions/leadActions";
 
-export type LeadPageStateType = {
+export type LeadStateType = {
   invitedLeads: InvitedLeadModel[];
   acceptedLeads: AcceptedLeadModel[];
-  loading: boolean;
+  isInvitedLeadsLoading: boolean;
+  isAccpetedLeadsLoading: boolean;
 };
 
-const initialState: LeadPageStateType = {
+const initialState: LeadStateType = {
   invitedLeads: [],
   acceptedLeads: [],
-  loading: false,
+  isAccpetedLeadsLoading: false,
+  isInvitedLeadsLoading: false,
 };
 
 export const leadReducer = (
-  state: LeadPageStateType = initialState,
+  state: LeadStateType = initialState,
   action: BaseAction
 ) => {
   switch (action.type) {
-    case LeadActions.GET_ACCEPTED_LEAD_LOADING:
-      return { ...state, loading: true };
+    case ActionType.GET_ACCEPTED_LEAD_LOADING:
+      return { ...state, isAccpetedLeadsLoading: true };
 
-    case LeadActions.GET_ACCEPTED_LEAD_FAIL:
-      return { ...state, loading: false };
+    case ActionType.GET_ACCEPTED_LEAD_FAIL:
+      return { ...state, isAccpetedLeadsLoading: false };
 
-    case LeadActions.GET_ACCEPTED_LEAD_SUCCESS:
-      return { ...state, acceptedLeads: [...action.payload], loading: false };
+    case ActionType.GET_ACCEPTED_LEAD_SUCCESS:
+      return {
+        ...state,
+        acceptedLeads: [...action.payload],
+        isAccpetedLeadsLoading: false,
+      };
+
+    case ActionType.GET_INVITED_LEAD_LOADING:
+      return { ...state, isInvitedLeadsLoading: true };
+
+    case ActionType.GET_INVITED_LEAD_FAIL:
+      return { ...state, isInvitedLeadsLoading: true };
+
+    case ActionType.GET_INVITED_LEAD_SUCCESS:
+      return {
+        ...state,
+        invitedLeads: [...action.payload],
+        isInvitedLeadsLoading: true,
+      };
   }
   return state;
 };

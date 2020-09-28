@@ -7,13 +7,24 @@ import InvitedLeadList from "../components/home/invitedLeadList";
 import { AcceptedLeadModel } from "../models/acceptedLead";
 import { InvitedLeadModel } from "../models/invitedLead";
 import { RootStateType } from "../store/reducers";
+import {
+  getAcceptedLeadAction,
+  getInvitedLeadAction,
+} from "../store/actions/leadActions";
 
 interface Props extends RouteComponentProps {
   invitedLeads: InvitedLeadModel[];
   acceptedLeads: AcceptedLeadModel[];
+  getAcceptedLeads: () => void;
+  getInvitedLeads: () => void;
 }
 
-class Home extends React.PureComponent<Props, {}> {
+class Home extends React.PureComponent<Props> {
+  async componentDidMount() {
+    this.props.getAcceptedLeads();
+    this.props.getInvitedLeads();
+  }
+
   render() {
     const { invitedLeads, acceptedLeads } = this.props;
     return (
@@ -37,7 +48,10 @@ function mapStateToProps(state: RootStateType) {
 }
 
 function mapDispatchToProps(dispatch: any) {
-  return {};
+  return {
+    getAcceptedLeads: () => dispatch(getAcceptedLeadAction()),
+    getInvitedLeads: () => dispatch(getInvitedLeadAction()),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

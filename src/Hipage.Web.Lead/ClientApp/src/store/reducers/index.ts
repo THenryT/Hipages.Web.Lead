@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 import { connectRouter, RouterState } from "connected-react-router";
 
-import { leadReducer, LeadPageStateType } from "./leadReducer";
+import { leadReducer, LeadStateType } from "./leadReducer";
 import { History } from "history";
 
 export type RootStateType = {
-  leadPage: LeadPageStateType;
+  leadPage: LeadStateType;
   routerReducer: RouterState;
 };
 

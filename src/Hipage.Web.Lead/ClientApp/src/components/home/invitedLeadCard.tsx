@@ -1,8 +1,9 @@
 import React from "react";
 import { Card, Avatar, Button } from "antd";
-import { HomeOutlined, MediumWorkmarkOutlined } from "@ant-design/icons";
+import { HomeOutlined, HddOutlined } from "@ant-design/icons";
 import { InvitedLeadModel } from "../../models/invitedLead";
-
+import { LeadCartContentWithUnderline } from "./leadCardContentWithUnderLine";
+import { LeadCardItem } from "./LeadCardItem";
 interface Props {
   lead: InvitedLeadModel;
 }
@@ -11,28 +12,27 @@ export default (props: Props) => {
   const { lead } = props;
   return (
     <Card>
-      <div>
-        <Avatar>{lead.firstName[0]}</Avatar>
-        <div>{lead.firstName}</div>
-        <div>{lead.createdDate}</div>
-      </div>
-      <div>
-        <span>
+      <Card.Meta
+        avatar={<Avatar>{lead.firstName[0]}</Avatar>}
+        title={lead.firstName}
+        description={lead.createdDate}
+      />
+      <LeadCartContentWithUnderline>
+        <LeadCardItem>
           <HomeOutlined /> {lead.suburb}{" "}
-        </span>
-        <span>
-          <MediumWorkmarkOutlined /> {lead.category}
-        </span>
-        <span>Job Id: {lead.id}</span>
-      </div>
-      <div>{lead.description}</div>
-      <div>
+        </LeadCardItem>
+        <LeadCardItem>
+          <HddOutlined /> {lead.category}
+        </LeadCardItem>
+        <LeadCardItem>Job Id:{lead.id}</LeadCardItem>
+      </LeadCartContentWithUnderline>
+      <LeadCartContentWithUnderline>
         <Button type="primary">Accept</Button>
         <Button type="primary" danger>
           Decline
         </Button>
-        <span>{lead.price} Lead Invitation</span>
-      </div>
+        <LeadCardItem>{lead.price} Lead Invitation</LeadCardItem>
+      </LeadCartContentWithUnderline>
     </Card>
   );
 };
