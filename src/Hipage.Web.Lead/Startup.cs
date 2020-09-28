@@ -1,11 +1,15 @@
+using System.Reflection;
+using AutoMapper;
+using Hipage.Infrastrcuture.Lead;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using LeadApplicationAssembly = Hipage.Application.Lead.ApplicationAssembly;
 
 namespace Hipage.Web.Lead
 {
@@ -17,11 +21,23 @@ namespace Hipage.Web.Lead
         }
 
         public IConfiguration Configuration { get; }
+        
+        private Assembly LeadApplication => typeof(LeadApplicationAssembly).Assembly;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddAutoMapper(typeof(Startup).Assembly);
+
+            services.AddMediatR(LeadApplication);
+
+            services.Configure<DatabaseSetting>(Configuration.GetSection(nameof(DatabaseSetting)));
+
+            services.AddSingleton<IDatabaseSetting>(sp => sp.GetRequiredService<IOptions<DatabaseSetting>>().Value);
+
+            services.AddInfrastructure(Configuration);
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/build"; });

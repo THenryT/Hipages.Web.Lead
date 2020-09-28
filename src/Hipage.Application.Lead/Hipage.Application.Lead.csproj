@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="8.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Hipage.Domain.Lead\Hipage.Domain.Lead.csproj" />
+      <ProjectReference Include="..\Hipage.Infrastrcuture.Lead\Hipage.Infrastrcuture.Lead.csproj" />
+    </ItemGroup>
+
+</Project>

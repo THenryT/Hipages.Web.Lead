@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.8" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.8" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.8" />
+      <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.6" />
+      <PackageReference Include="MongoDB.Driver" Version="2.11.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Hipage.Domain.Lead\Hipage.Domain.Lead.csproj" />
+    </ItemGroup>
+
+</Project>
