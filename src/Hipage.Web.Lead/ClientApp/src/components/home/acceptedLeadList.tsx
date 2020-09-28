@@ -7,7 +7,7 @@ interface Props {
   leads: AcceptedLeadModel[];
 }
 
-export default (props: Props) => {
+const list = (props: Props) => {
   const { leads } = props;
   if (leads.length === 0) {
     return <div>No Data</div>;
@@ -22,3 +22,5 @@ export default (props: Props) => {
     </React.Fragment>
   );
 };
+
+export default React.memo(list);

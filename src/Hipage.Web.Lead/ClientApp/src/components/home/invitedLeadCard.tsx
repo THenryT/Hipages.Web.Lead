@@ -6,10 +6,12 @@ import { LeadCartContentWithUnderline } from "./leadCardContentWithUnderLine";
 import { LeadCardItem } from "./LeadCardItem";
 interface Props {
   lead: InvitedLeadModel;
+  accpetLead: (id: string) => void;
+  declineLead: (id: string) => void;
 }
 
 export default (props: Props) => {
-  const { lead } = props;
+  const { lead, accpetLead, declineLead } = props;
   return (
     <Card>
       <Card.Meta
@@ -27,8 +29,10 @@ export default (props: Props) => {
         <LeadCardItem>Job Id:{lead.id}</LeadCardItem>
       </LeadCartContentWithUnderline>
       <LeadCartContentWithUnderline>
-        <Button type="primary">Accept</Button>
-        <Button type="primary" danger>
+        <Button type="primary" onClick={() => accpetLead(lead.id)}>
+          Accept
+        </Button>
+        <Button type="primary" danger onClick={() => declineLead(lead.id)}>
           Decline
         </Button>
         <LeadCardItem>{lead.price} Lead Invitation</LeadCardItem>

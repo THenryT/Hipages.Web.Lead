@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using AutoMapper;
+using Hipage.Application.Lead.Commands;
 using Hipage.Application.Lead.Queries;
 using Hipage.Domain.Lead.Enum;
 using Hipage.Web.Lead.Models;
@@ -54,6 +56,28 @@ namespace Hipage.Web.Lead.Controllers
                 default:
                     throw new Exception($"Cannot get leads with status {status}");
             }
+        }
+        
+        [HttpPost]
+        public async Task<ActionResult> AcceptLead([FromBody] Guid id)
+        {
+            var reuqest = new AcceptLead.Reuqest()
+            {
+                Id = id
+            };
+            var response = await _mediator.Send(reuqest);
+            return Ok();
+        }
+        
+        [HttpPost]
+        public async Task<ActionResult> DeclineLead([FromBody] Guid id)
+        {
+            var reuqest = new DeclineLead.Reuqest()
+            {
+                Id = id
+            };
+            var response = await _mediator.Send(reuqest);
+            return Ok();
         }
     }
 }
