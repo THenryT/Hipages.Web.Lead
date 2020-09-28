@@ -8,6 +8,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hipage.Domain.Lead", "src\H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hipage.Infrastrcuture.Lead", "src\Hipage.Infrastrcuture.Lead\Hipage.Infrastrcuture.Lead.csproj", "{F4E31169-409B-4069-8D78-EEA0DC092D8A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1E5F287A-E6F4-4AE0-B54C-4F8EE8BE44B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{35AE4F9F-0B69-450A-9724-5B76D423A0F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hipage.Web.Lead.Integartion.Tests", "tests\Hipage.Web.Lead.Integartion.Tests\Hipage.Web.Lead.Integartion.Tests.csproj", "{6548771D-D71E-4C4B-8235-60C76C209C77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,7 +36,16 @@ Global
 		{F4E31169-409B-4069-8D78-EEA0DC092D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4E31169-409B-4069-8D78-EEA0DC092D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4E31169-409B-4069-8D78-EEA0DC092D8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6548771D-D71E-4C4B-8235-60C76C209C77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6548771D-D71E-4C4B-8235-60C76C209C77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6548771D-D71E-4C4B-8235-60C76C209C77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6548771D-D71E-4C4B-8235-60C76C209C77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{95C53F59-39B6-4165-9E37-765D12B47AB8} = {1E5F287A-E6F4-4AE0-B54C-4F8EE8BE44B7}
+		{A5F65BEF-CC3A-4F1B-BD9C-E8B4E59B63E7} = {1E5F287A-E6F4-4AE0-B54C-4F8EE8BE44B7}
+		{F4E31169-409B-4069-8D78-EEA0DC092D8A} = {1E5F287A-E6F4-4AE0-B54C-4F8EE8BE44B7}
+		{AA72499A-8BC2-45AC-B1A1-023E3D854FB1} = {1E5F287A-E6F4-4AE0-B54C-4F8EE8BE44B7}
+		{6548771D-D71E-4C4B-8235-60C76C209C77} = {35AE4F9F-0B69-450A-9724-5B76D423A0F8}
 	EndGlobalSection
 EndGlobal

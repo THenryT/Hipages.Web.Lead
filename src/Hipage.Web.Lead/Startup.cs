@@ -21,13 +21,16 @@ namespace Hipage.Web.Lead
         }
 
         public IConfiguration Configuration { get; }
-        
+
         private Assembly LeadApplication => typeof(LeadApplicationAssembly).Assembly;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services
+                .AddHealthChecks();
 
             services.AddAutoMapper(typeof(Startup).Assembly);
 
@@ -61,7 +64,9 @@ namespace Hipage.Web.Lead
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            app.UseRouting();
+            app.UseRouting()
+                .UseHealthChecks("/health/alive")
+                .UseHealthChecks("/health/ready");
 
             app.UseEndpoints(endpoints =>
             {

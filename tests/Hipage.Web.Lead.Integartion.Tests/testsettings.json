@@ -1,0 +1,6 @@
+{
+    "Tests": {
+        "RetryAttempts": 60,
+        "RetryInterval": 2000
+    }
+}
