@@ -2,6 +2,8 @@ using System;
 using Hipage.Domain.Lead.Enum;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Hipage.Domain.Lead.Entities
 {
@@ -10,15 +12,17 @@ namespace Hipage.Domain.Lead.Entities
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        [BsonRepresentation(BsonType.String)]  
         public LeadStatus Status { get; set; }
         public string Suburb { get; set; }
         public decimal Price { get; set; }
         public DateTime CreatedDate { get; set; }
         public string Category { get; set; }
         public string Description { get; set; }
-        [BsonElement("full_name")]
+        [BsonElement("Full_name")]
         public string FullName { get; set; }
-        [BsonElement("phone_number")]
+        [BsonElement("Phone_num")]
         public string PhoneNum { get; set; }
         public string Email { get; set; }
     }

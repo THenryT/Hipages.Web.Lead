@@ -28,38 +28,31 @@ namespace Hipage.Web.Lead.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Get([FromRoute]LeadStatus status)
+        public async Task<ActionResult> Get([FromQuery] LeadStatus status)
         {
-            try
+            var reuqest = new GetLeadsQuery.Reuqest()
             {
-                var reuqest = new GetLeadsQuery.Reuqest()
+                Status = status
+            };
+            var response = await _mediator.Send(reuqest);
+            switch (status)
+            {
+                case LeadStatus.Created:
                 {
-                    Status = status
-                };
-                var response = await _mediator.Send(reuqest);
-                switch (status)
-                {
-                    case LeadStatus.Created:
-                    {
-                        var result =
-                            _mapper.Map<IEnumerable<Domain.Lead.Entities.Lead>, IEnumerable<InvitedLeadViewModel>>(
-                                response.leads);
-                        return Ok(result);
-                    }
-                    case LeadStatus.Accepted:
-                    {
-                        var result =
-                            _mapper.Map<IEnumerable<Domain.Lead.Entities.Lead>, IEnumerable<AcceptedLeadViewModel>>(
-                                response.leads);
-                        return Ok(result);
-                    }
-                    default:
-                        throw new Exception($"Cannot get leads with status {status}");
+                    var result =
+                        _mapper.Map<IEnumerable<Domain.Lead.Entities.Lead>, List<InvitedLeadViewModel>>(
+                            response.leads);
+                    return Ok(result);
                 }
-            }
-            catch (Exception e)
-            {
-                return BadRequest();
+                case LeadStatus.Accepted:
+                {
+                    var result =
+                        _mapper.Map<IEnumerable<Domain.Lead.Entities.Lead>, List<AcceptedLeadViewModel>>(
+                            response.leads);
+                    return Ok(result);
+                }
+                default:
+                    throw new Exception($"Cannot get leads with status {status}");
             }
         }
     }
