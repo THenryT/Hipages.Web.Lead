@@ -1,7 +1,11 @@
 
 # Solution Description
-It is a microservice structure and it include one domain called "lead".
-I use clean architecture to build the strcutre of project
+
+## It is a microservice structure 
+
+## Domain is Lead
+
+### Use clean architecture 
 This project have four layer which are application layer, infrastructure layer, domain layer and web layer. 
 1.The domain layer is at the centre and include the domain logic.
 2.The application layer have business logics and it dependent on infrastructure and domain layer.
