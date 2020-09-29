@@ -1,7 +1,7 @@
 
 # Solution Description
 
-### It is a microservice structure and using DDD to build the logic
+### It is a microservice structure
 
 #### Using clean architecture
 This project have four layer which are application layer, infrastructure layer, domain layer and web layer. 
