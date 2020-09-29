@@ -10,12 +10,13 @@ It includes Front-end(React) + Back-end service(Asp dotnet core 3.1)
 4. node and npm
 
 ## How to execute it locally
-1. Using docker-compose up to execute the mongodb with initial data
+1. Using docker-compose up the mongodb docker with initial data
 2. Open solution in vs studio or rider
 3. Execute the Hipage.Web.Lead
 
 ## ToDo list
 This is a start up project and I have listed all todo list belowe to remind us to imporve our project:
+* Add Dockfile for lead service
 * Add Integartion tests
 * Add Validation for lead service
 * Add End-to-End test for system
