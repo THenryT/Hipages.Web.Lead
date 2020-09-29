@@ -11,7 +11,7 @@ It includes Front-end(React) + Back-end service(Asp dotnet core 3.1)
 
 ## How to execute it locally
 1. Using docker-compose up the mongodb docker with initial data
-2. Open solution in vs studio or rider
+2. Open solution via VS studio or rider
 3. Execute the Hipage.Web.Lead
 
 ## ToDo list
