@@ -1,11 +1,8 @@
 
 # Solution Description
 
-### It is a microservice structure 
+### It is a microservice structure and using DDD to build the logic
 
-### Domain is Lead
-
-### project architecture 
 #### Using clean architecture
 This project have four layer which are application layer, infrastructure layer, domain layer and web layer. 
 * The domain layer is at the centre and include the domain logic.
