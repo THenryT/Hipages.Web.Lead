@@ -19,7 +19,7 @@ interface Props extends RouteComponentProps {
   acceptedLeads: AcceptedLeadModel[];
   getAcceptedLeads: () => void;
   getInvitedLeads: () => void;
-  accpetLead: (id: string) => void;
+  acceptLead: (id: string) => void;
   declineLead: (id: string) => void;
 }
 
@@ -30,13 +30,13 @@ class Home extends React.PureComponent<Props> {
   }
 
   render() {
-    const { invitedLeads, acceptedLeads, accpetLead, declineLead } = this.props;
+    const { invitedLeads, acceptedLeads, acceptLead, declineLead } = this.props;
     return (
       <Tabs defaultActiveKey="1" centered>
         <Tabs.TabPane tab="Invited" key="1">
           <InvitedLeadList
             leads={invitedLeads}
-            accpetLead={accpetLead}
+            acceptLead={acceptLead}
             declineLead={declineLead}
           />
         </Tabs.TabPane>
@@ -59,7 +59,7 @@ function mapDispatchToProps(dispatch: any) {
   return {
     getAcceptedLeads: () => dispatch(getAcceptedLeadAction()),
     getInvitedLeads: () => dispatch(getInvitedLeadAction()),
-    accpetLead: (id: string) => dispatch(acceptLeadAction(id)),
+    acceptLead: (id: string) => dispatch(acceptLeadAction(id)),
     declineLead: (id: string) => dispatch(declineLeadAction(id)),
   };
 }

@@ -58,25 +58,25 @@ namespace Hipage.Web.Lead.Controllers
             }
         }
         
-        [HttpPost]
-        public async Task<ActionResult> AcceptLead([FromBody] Guid id)
+        [HttpPut("{id}/accept")]
+        public async Task<ActionResult> AcceptLead([FromRoute] string id)
         {
             var reuqest = new AcceptLead.Reuqest()
             {
                 Id = id
             };
-            var response = await _mediator.Send(reuqest);
+            await _mediator.Send(reuqest);
             return Ok();
         }
         
-        [HttpPost]
-        public async Task<ActionResult> DeclineLead([FromBody] Guid id)
+        [HttpPut("{id}/decline")]
+        public async Task<ActionResult> DeclineLead([FromRoute] string id)
         {
             var reuqest = new DeclineLead.Reuqest()
             {
                 Id = id
             };
-            var response = await _mediator.Send(reuqest);
+            await _mediator.Send(reuqest);
             return Ok();
         }
     }

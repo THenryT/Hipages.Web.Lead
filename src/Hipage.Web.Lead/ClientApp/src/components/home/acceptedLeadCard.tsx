@@ -19,13 +19,13 @@ export default (props: Props) => {
   return (
     <Card>
       <Card.Meta
-        avatar={<Avatar>{lead.fullname[0]}</Avatar>}
-        title={lead.fullname}
+        avatar={<Avatar>{lead.fullName[0]}</Avatar>}
+        title={lead.fullName}
         description={lead.createdDate}
       />
       <LeadCartContentWithUnderline>
         <LeadCardItem>
-          <HomeOutlined /> {lead.suburb}{" "}
+          <HomeOutlined /> {lead.suburb}
         </LeadCardItem>
         <LeadCardItem>
           <HddOutlined /> {lead.category}
@@ -36,7 +36,7 @@ export default (props: Props) => {
       <LeadCartContentWithUnderline>
         <LeadCardItem>
           <PhoneOutlined />
-          {lead.phoneNum}
+          {lead.phoneNumber}
         </LeadCardItem>
         <LeadCardItem>
           <MailOutlined /> {lead.email}

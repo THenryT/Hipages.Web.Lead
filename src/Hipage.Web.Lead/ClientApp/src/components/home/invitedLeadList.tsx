@@ -5,12 +5,12 @@ import { InvitedLeadModel } from "../../models/invitedLead";
 
 interface Props {
   leads: InvitedLeadModel[];
-  accpetLead: (id: string) => void;
+  acceptLead: (id: string) => void;
   declineLead: (id: string) => void;
 }
 
 const list = (props: Props) => {
-  const { leads, accpetLead, declineLead } = props;
+  const { leads, acceptLead, declineLead } = props;
   if (leads.length === 0) {
     return <div>No Data</div>;
   }
@@ -20,7 +20,7 @@ const list = (props: Props) => {
         <LeadCardContainer key={index}>
           <InvitedLeadCard
             lead={lead}
-            accpetLead={accpetLead}
+            acceptLead={acceptLead}
             declineLead={declineLead}
           />
         </LeadCardContainer>

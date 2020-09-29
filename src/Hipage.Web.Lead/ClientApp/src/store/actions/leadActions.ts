@@ -9,6 +9,8 @@ export const ActionType = {
   DECLINE_LEAD_LOADING: "DECLINE_LEAD_LOADING",
   ACCEPT_LEAD_SUCCESS: "ACCEPT_LEAD_SUCCESS",
   DECLINE_LEAD_SUCCESS: "DECLINE_LEAD_SUCCESS",
+  ACCEPT_LEAD_FAIL: "ACCEPT_LEAD_FAIL",
+  DECLINE_LEAD_FAIL: "DECLINE_LEAD_FAIL",
 };
 
 export const getAcceptedLeadAction = () => {
@@ -24,5 +26,5 @@ export const acceptLeadAction = (id: string) => {
 };
 
 export const declineLeadAction = (id: string) => {
-  return { type: ActionType.DECLINE_LEAD_LOADING, paylaod: id };
+  return { type: ActionType.DECLINE_LEAD_LOADING, payload: id };
 };

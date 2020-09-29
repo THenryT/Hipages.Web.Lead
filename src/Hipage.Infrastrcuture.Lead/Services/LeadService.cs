@@ -9,7 +9,7 @@ namespace Hipage.Infrastrcuture.Lead.Services
 {
     public interface ILeadService
     {
-        Task<Domain.Lead.Entities.Lead> GetAsync(Guid id);
+        Task<Domain.Lead.Entities.Lead> GetAsync(string id);
         Task<IEnumerable<Domain.Lead.Entities.Lead>> GetAsync(LeadStatus status);
         Task UpdateAsync(Domain.Lead.Entities.Lead lead);
     }
@@ -32,9 +32,9 @@ namespace Hipage.Infrastrcuture.Lead.Services
             return cursor.ToList();
         }
         
-        public async Task<Domain.Lead.Entities.Lead> GetAsync(Guid id)
+        public async Task<Domain.Lead.Entities.Lead> GetAsync(string id)
         {
-            var cursor = await _lead.FindAsync(x => x.Id == id.ToString());
+            var cursor = await _lead.FindAsync(x => x.Id == id);
             var lead = cursor.ToList().FirstOrDefault();
             return lead;
         }

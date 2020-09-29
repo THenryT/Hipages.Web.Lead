@@ -1,11 +1,11 @@
 export interface AcceptedLeadModel {
-  fullname: string;
+  fullName: string;
   createdDate: string;
   suburb: string;
   category: string;
   id: string;
   description: string;
   price: string;
-  phoneNum: string;
+  phoneNumber: string;
   email: string;
 }

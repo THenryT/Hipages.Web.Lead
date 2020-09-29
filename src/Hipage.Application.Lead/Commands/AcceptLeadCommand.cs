@@ -11,7 +11,7 @@ namespace Hipage.Application.Lead.Commands
     {
         public class Reuqest: IRequest
         {
-            public Guid Id{ get; set; }   
+            public string Id{ get; set; }   
         }
 
         public class Handler: IRequestHandler<Reuqest, Unit>
@@ -30,7 +30,7 @@ namespace Hipage.Application.Lead.Commands
                     throw new Exception($"Lead ({request.Id}) is not found");
                 }
 
-                lead.Status = LeadStatus.Accepted;
+                lead = lead.SwitchStatus(LeadStatus.Accepted);
                 await _leadService.UpdateAsync(lead);
                 
                 return new Unit();

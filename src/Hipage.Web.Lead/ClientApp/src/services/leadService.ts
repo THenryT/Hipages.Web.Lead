@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default class LeadService {
   static async GetLeads(status: string) {
-    var result = await axios.get("/api/v1/lead", {
+    const result = await axios.get("/api/v1/lead", {
       params: {
         status: status,
       },
@@ -12,14 +12,10 @@ export default class LeadService {
   }
 
   static async AcceptLead(id: string) {
-    await axios.put("api/v1/lead/accpetlead", {
-      id: id,
-    });
+    await axios.put(`api/v1/lead/${id}/accept`);
   }
 
   static async DeclineLead(id: string) {
-    await axios.put("api/v1/lead/declinelead", {
-      id: id,
-    });
+    await axios.put(`api/v1/lead/${id}/decline`);
   }
 }
